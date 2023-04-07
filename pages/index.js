@@ -1,11 +1,13 @@
 import { useState } from 'react'
 
-const TODOS = [
-  { id: 1, label: "do homework", complete: false },
-  { id: 2, label: "do work", complete: true },
-  { id: 3, label: "walk the dog", complete: true },
-  { id: 4, label: "post pictures", complete: false }
-]
+// const TODOS = [
+//   { id: 1, label: "do homework", complete: false },
+//   { id: 2, label: "do work", complete: true },
+//   { id: 3, label: "walk the dog", complete: true },
+//   { id: 4, label: "post pictures", complete: false }
+// ]
+
+let id = 0
 
 const Todo = ({ label }) => {
   return (
@@ -37,26 +39,35 @@ const TodoList = ({ todos }) => {
   )
 }
 
-const AddTodos = () => {
+const AddTodos = ( {todos, setTodos} ) => {
+
+  const addATodo = (e) => {
+    e.preventDefault();
+    setTodos([...todos, {id: id++, label: e.target[0].value, isComplete: false}])
+    e.target[0].value = ''
+  }
+
   return (
-    <div className="add-todos">
+    <form className="add-todos" onSubmit={addATodo}>
       <input type="text" placeholder="Create a new todo..."></input>
-      <button>+</button>
-    </div>
+      <button type='submit'>+</button>
+    </form>
   )
 }
 
 export default function App() {
+  const [todos, setTodos] = useState([])
+
   return (
     <main>
       <div className="wrapper">
         <h1>TODO</h1>
 
 
-        <AddTodos />
+        <AddTodos todos={todos} setTodos={setTodos}/>
 
 
-        <TodoList todos={TODOS} />
+        <TodoList todos={todos} />
       </div>
     </main>
   )
