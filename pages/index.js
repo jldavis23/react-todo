@@ -1,15 +1,25 @@
 import { useState } from 'react'
 
 const TODOS = [
-  {id: 1, label: "do homework", complete: false},
-  {id: 2, label: "do work", complete: true},
-  {id: 3, label: "walk the dog", complete: true},
-  {id: 4, label: "post pictures", complete: false}
+  { id: 1, label: "do homework", complete: false },
+  { id: 2, label: "do work", complete: true },
+  { id: 3, label: "walk the dog", complete: true },
+  { id: 4, label: "post pictures", complete: false }
 ]
 
 const Todo = ({ label }) => {
   return (
-    <li>{label}</li>
+    <li className="todo">
+      <div className="todo-label">
+        <input type="checkbox"></input>
+        <span>{label}</span>
+      </div>
+  
+      <div className="todo-buttons">
+        <button>edit</button>
+        <button>delete</button>
+      </div>
+    </li>
   )
 }
 
@@ -17,29 +27,37 @@ const TodoList = ({ todos }) => {
   let items = []
 
   todos.forEach(item => {
-    items.push(<Todo label={item.label} key={item.id}/>)
+    items.push(<Todo label={item.label} key={item.id} />)
   })
 
   return (
-    <ol>
+    <ul className="todo-list">
       {items}
-    </ol>
+    </ul>
   )
 }
 
 const AddTodos = () => {
   return (
-    <input type="text"></input>
+    <div className="add-todos">
+      <input type="text" placeholder="Create a new todo..."></input>
+      <button>+</button>
+    </div>
   )
 }
 
 export default function App() {
   return (
-    <>
-      <h1>My Todos</h1>
-      <p>this is a list of todos</p>
-      <AddTodos />
-      <TodoList todos={TODOS}/>
-    </>
+    <main>
+      <div className="wrapper">
+        <h1>TODO</h1>
+
+
+        <AddTodos />
+
+
+        <TodoList todos={TODOS} />
+      </div>
+    </main>
   )
 }
