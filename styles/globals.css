@@ -72,6 +72,10 @@ h1 {
     margin-left: 8px;
 }
 
+.completed {
+    text-decoration: line-through;
+}
+
 .todo-buttons {
     font-size: 12px;
 }

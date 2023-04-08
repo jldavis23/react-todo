@@ -12,6 +12,18 @@ let id = 1
 const Todo = ({ todos, setTodos, index }) => {
   const [value, setValue] = useState(todos[index].label)
 
+  let checkTodo = () => {
+    const updatedTodos = todos.map((todo, i) => {
+      if (i === index) {
+        return {id: todo.id, label: value, isComplete: !todo.isComplete, editMode: todo.editMode}
+      } else {
+        return todo
+      }
+    })
+    console.log(updatedTodos)
+    setTodos(updatedTodos)
+  }
+
   let editOrSave = (index) => {
     const updatedTodos = todos.map((todo, i) => {
       if (i === index) {
@@ -27,11 +39,11 @@ const Todo = ({ todos, setTodos, index }) => {
   return (
     <li className="todo">
       <div className="todo-label">
-        <input type="checkbox"></input>
+        <input type="checkbox" onClick={checkTodo}></input>
         {todos[index].editMode ? (
           <input type="text" value={value} onChange={(e) => {setValue(e.target.value)}}></input>
         ) : (
-          <span>{todos[index].label}</span>
+          <span className={todos[index].isComplete ? 'completed' : null}>{todos[index].label}</span>
         )
         }
 
