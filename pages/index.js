@@ -20,7 +20,6 @@ const Todo = ({ todos, setTodos, index }) => {
         return todo
       }
     })
-    console.log(updatedTodos)
     setTodos(updatedTodos)
   }
 
@@ -32,7 +31,13 @@ const Todo = ({ todos, setTodos, index }) => {
         return todo
       }
     })
-    console.log(updatedTodos)
+    console.log(todos)
+    setTodos(updatedTodos)
+  }
+
+  let deleteTodo = (id) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id)
+    console.log(todos)
     setTodos(updatedTodos)
   }
 
@@ -51,7 +56,7 @@ const Todo = ({ todos, setTodos, index }) => {
 
       <div className="todo-buttons">
         <button onClick={() => editOrSave(index)}>{todos[index].editMode ? 'save' : 'edit'}</button>
-        <button>delete</button>
+        <button onClick={() => deleteTodo(todos[index].id)}>delete</button>
       </div>
     </li>
   )
