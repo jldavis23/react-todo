@@ -1,12 +1,5 @@
 import { useState } from 'react'
 
-// const TODOS = [
-//   { id: 1, label: "do homework", complete: false },
-//   { id: 2, label: "do work", complete: true },
-//   { id: 3, label: "walk the dog", complete: true },
-//   { id: 4, label: "post pictures", complete: false }
-// ]
-
 let id = 1
 
 const Todo = ({ todos, setTodos, index }) => {
